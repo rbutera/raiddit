@@ -32,12 +32,16 @@ Template.postItem.rendered = function(){
     var delta = previousPosition - newPosition;
     $this.css("top", delta + "px");
   }
+  else {
+    // first render, so hide
+    $this.addClass("invisible");
+  }
   
   // let it draw in the old position, then..
   Meteor.defer(function() {
     instance.currentPosition = newPosition;
     // bring element back to its new original position
-    $this.css("top",  "0px");
+    $this.css("top",  "0px").removeClass("invisible");
   }); 
 };
 
